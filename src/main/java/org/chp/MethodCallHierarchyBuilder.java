@@ -1,4 +1,4 @@
-package org.chb;
+package org.chp;
 
 import spoon.reflect.reference.CtExecutableReference;
 import spoon.reflect.reference.CtTypeReference;

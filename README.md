@@ -1,4 +1,4 @@
-CHB prints selected method call hierarchy in text format for easy processing (eg. grep). It is equivalent 
+CHP (Call Hierarchy Printer) prints selected method call hierarchy in text format for easy processing (eg. grep). It is equivalent
 to "Call Hierarchy" function in any advanced IDE.
 
 Installation
@@ -16,7 +16,7 @@ For maven run:
 	
 To print method call hierarchy run:
 
-    java -jar org.chb-VERSION.jar -m (--method-name) METHOD_NAME -s (--source-folder) SOURCE_FOLDERS
+    java -jar org.chp-VERSION.jar -m (--method-name) METHOD_NAME -s (--source-folder) SOURCE_FOLDERS
     
     --classpath-file CLASSPATH_FILE     : file containing the classpath for the analyzed project
     -c (--classpath) CLASSPATH          : classpath for the analyzed project
@@ -26,5 +26,5 @@ To print method call hierarchy run:
 Example
 -------
 
-	$ mvn dependency:build-classpath | grep -v INFO > chb.classpath
-	$ java -jar target/org.chb-*-SNAPSHOT.jar -s src/main/java -m org.chb.ShowMethodCallHierarchy.main --classpath-file chb.classpath
+	$ mvn dependency:build-classpath | grep -v INFO > chp.classpath
+	$ java -jar target/org.chp-*-SNAPSHOT.jar -s src/main/java -m org.chp.ShowMethodCallHierarchy.main --classpath-file chp.classpath

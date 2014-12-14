@@ -1,4 +1,4 @@
-package org.chb;
+package org.chp;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -52,7 +52,7 @@ public class ShowMethodCallHierarchy {
             parser.parseArgument(args);
         } catch (CmdLineException e) {
             System.err.println(e.getMessage());
-            System.err.print("Usage: java -jar <CHB_JAR_PATH>" + parser.printExample(OptionHandlerFilter.REQUIRED));
+            System.err.print("Usage: java -jar <CHP_JAR_PATH>" + parser.printExample(OptionHandlerFilter.REQUIRED));
             System.err.println();
             System.err.println();
             System.err.println("Options:");
