@@ -1,8 +1,10 @@
+CHB prints selected method call hierarchy in text format for easy processing (eg. grep). It is equivalent 
+to "Call Hierarchy" function in any advanced IDE.
+
 Installation
 ------------
-	mvn package
-	
 
+	mvn package
 
 Usage
 -----
@@ -25,4 +27,4 @@ Example
 -------
 
 	$ mvn dependency:build-classpath | grep -v INFO > chb.classpath
-	$ java -jar target/org.chb-1.0-SNAPSHOT.jar -s src/main/java -m org.chb.ShowMethodCallHierarchy.main --classpath-file chb.classpath
+	$ java -jar target/org.chb-*-SNAPSHOT.jar -s src/main/java -m org.chb.ShowMethodCallHierarchy.main --classpath-file chb.classpath
