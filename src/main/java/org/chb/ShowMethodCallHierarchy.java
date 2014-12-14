@@ -1,7 +1,11 @@
 package org.chb;
 
 import org.apache.commons.io.FileUtils;
-import org.kohsuke.args4j.*;
+import org.apache.commons.lang3.StringUtils;
+import org.kohsuke.args4j.CmdLineException;
+import org.kohsuke.args4j.CmdLineParser;
+import org.kohsuke.args4j.Option;
+import org.kohsuke.args4j.OptionHandlerFilter;
 import org.kohsuke.args4j.spi.StringArrayOptionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,8 +52,10 @@ public class ShowMethodCallHierarchy {
             parser.parseArgument(args);
         } catch (CmdLineException e) {
             System.err.println(e.getMessage());
-            System.err.print("Usage: java " + this.getClass().getName() + parser.printExample(OptionHandlerFilter.REQUIRED));
+            System.err.print("Usage: java -jar <CHB_JAR_PATH>" + parser.printExample(OptionHandlerFilter.REQUIRED));
             System.err.println();
+            System.err.println();
+            System.err.println("Options:");
             parser.printUsage(System.err);
             return;
         }
@@ -58,7 +64,7 @@ public class ShowMethodCallHierarchy {
             launcher.setArgs(new String[] { "--source-classpath", classpath});
         }
         if (classpathFile != null) {
-            launcher.setArgs(new String[] { "--source-classpath", FileUtils.readFileToString(classpathFile)});
+            launcher.setArgs(new String[] { "--source-classpath", StringUtils.strip(FileUtils.readFileToString(classpathFile), "\n\r\t ")});
         }
         for (String sourceFolder : sourceFolders) {
             launcher.addInputResource(new FileSystemFolder(new File(sourceFolder)));
@@ -74,6 +80,4 @@ public class ShowMethodCallHierarchy {
         MethodCallHierarchyBuilder methodCallHierarchyBuilder = MethodCallHierarchyBuilder.forMethodName(methodName, callList, classHierarchy);
         methodCallHierarchyBuilder.printCallHierarchy();
     }
-
-
 }
