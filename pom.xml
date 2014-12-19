@@ -13,7 +13,6 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.0</version>
                 <configuration>
-                    <executable>/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home/bin/javac</executable>
                     <source>1.7</source>
                     <target>1.7</target>
                 </configuration>
