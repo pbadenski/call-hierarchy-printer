@@ -34,7 +34,8 @@ public class MethodCallHierarchyBuilder {
         for (CtExecutableReference executableReference : callList.keySet()) {
             String executableReferenceMethodName = executableReference.getDeclaringType().getQualifiedName() + "." + executableReference.getSimpleName();
             if (executableReferenceMethodName.equals(methodName)
-                    || executableReference.toString().contains(methodName)) {
+                    || executableReference.toString().contains(methodName)
+                    || executableReference.toString().matches(methodName)) {
                 result.add(executableReference);
             }
         }
