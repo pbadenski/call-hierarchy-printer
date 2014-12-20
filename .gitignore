@@ -5,3 +5,5 @@ target/
 spooned/
 *.swp
 *.iml
+.gradle/
+build/

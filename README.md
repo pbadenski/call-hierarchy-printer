@@ -4,30 +4,43 @@ to "Call Hierarchy" function in any advanced IDE.
 Installation
 ------------
 
-	mvn package
+	gradle jar
 
 Usage
 -----
 
-Before running the code you need classpath for the analyzed project.
-For maven run:
+1. Before running the code you need classpath for the analyzed project.
 
-	mvn dependency:build-classpath
-	
-To print method call hierarchy run:
+	For Maven run:
 
-    java -jar org.chp-VERSION.jar -m (--method-name) METHOD_NAME -s (--source-folder) SOURCE_FOLDERS
+		mvn dependency:build-classpath | grep -v "^\[.*\].*" > this.classpath
+
+	For Gradle add this to build.gradle:
+
+		task showClasspath << {
+    		it.println sourceSets.main.runtimeClasspath.collect { it.absolutePath }.join(':')
+    	}
+
+	and run
+
+ 		gradle -q showClasspath > this.classpath
+
+2. To print method call hierarchy run:
+
+		java -jar build/libs/org.chp-VERSION.jar -m (--method-name) METHOD_NAME -s (--source-folder) SOURCE_FOLDERS --classpath-file CLASSPATH_FILE
     
-    --classpath-file CLASSPATH_FILE     : file containing the classpath for the analyzed project
-    -c (--classpath) CLASSPATH          : classpath for the analyzed project
-    -m (--method-name) METHOD_NAME      : method name to print call hierarchy
-    -s (--source-folder) SOURCE_FOLDERS : source folder(s) for the analyzed project
+		--classpath-file CLASSPATH_FILE     : file containing the classpath for the analyzed project
+		-c (--classpath) CLASSPATH          : classpath for the analyzed project
+		-m (--method-name) METHOD_NAME      : method name to print call hierarchy
+		-s (--source-folder) SOURCE_FOLDERS : source folder(s) for the analyzed project
     
 Example
 -------
 
-	$ mvn dependency:build-classpath | grep -v INFO > chp.classpath
-	$ java -jar target/org.chp-*-SNAPSHOT.jar -s src/main/java -m org.chp.ShowMethodCallHierarchy.main --classpath-file chp.classpath
+Execute following from this project root directory:
+
+	$ gradle -q showClasspath > this.classpath
+	$ java -jar build/libs//org.chp-*.jar -s src/main/java -m org.chp.ShowMethodCallHierarchy.main --classpath-file this.classpath
 
 Output:
 
